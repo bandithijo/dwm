@@ -1,0 +1,10 @@
+#!/bin/bash
+
+case "$(cat /sys/class/net/w*/operstate 2>/dev/null)" in
+  down) wifiicon=" " ;;
+  up)   wifiicon="$(awk '/^\s*w/ { print "", int($3 * 100 / 70) }' /proc/net/wireless)" ;;
+esac
+
+printf "%s%s%s " "$wifiicon" \
+  "$(if pgrep pptp >/dev/null 2>&1; then echo "  VPN"; fi)" \
+  "$(if pgrep l2tp >/dev/null 2>&1; then echo "  OFFICE:VPN"; fi)"

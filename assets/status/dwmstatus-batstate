@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# add batt number as argument after filename. eg: dwlb-bstate 1
+state=$(cat /sys/class/power_supply/BAT$@/status)
+if   [[ $state = "charging"      ]] || [[ $state = "Charging"     ]]; then
+    printf "\n" # charging
+elif [[ $state = "discharging"   ]] || [[ $state = "Discharging"  ]]; then
+    printf "\n" # discharging
+elif [[ $state = "idle"          ]] || [[ $state = "Not charging" ]] || [[ $state = "pending-charge" ]]; then
+    printf "\n" # idle
+elif [[ $state = "fully-charged" ]] || [[ $state = "Full" ]]; then
+    printf "\n" # full
+else
+    printf "\n" # unknown
+fi

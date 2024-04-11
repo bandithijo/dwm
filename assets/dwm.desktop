@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=dwm
+Comment=dynamic window manager for X
+Exec=dwmstart
+Type=Application

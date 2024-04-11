@@ -37,9 +37,20 @@ install: all
 	mkdir -p ${DESTDIR}${MANPREFIX}/man1
 	sed "s/VERSION/${VERSION}/g" < dwm.1 > ${DESTDIR}${MANPREFIX}/man1/dwm.1
 	chmod 644 ${DESTDIR}${MANPREFIX}/man1/dwm.1
+	mkdir -p $(DESTDIR)$(DATADIR)/xsessions
+	cp -f assets/dwm.desktop $(DESTDIR)$(DATADIR)/xsessions/dwm.desktop
+	chmod 644 $(DESTDIR)$(DATADIR)/xsessions/dwm.desktop
+	cp -f assets/dwmstart $(DESTDIR)$(PREFIX)/bin
+	chmod 755 $(DESTDIR)$(PREFIX)/bin/dwmstart
+	cp -f assets/status/dwmstatus $(DESTDIR)$(PREFIX)/bin
+	chmod 755 $(DESTDIR)$(PREFIX)/bin/dwmstatus
+	cp -f assets/status/dwmstatus-* $(DESTDIR)$(PREFIX)/bin
+	chmod 755 $(DESTDIR)$(PREFIX)/bin/dwmstatus-*
 
 uninstall:
 	rm -f ${DESTDIR}${PREFIX}/bin/dwm\
 		${DESTDIR}${MANPREFIX}/man1/dwm.1
+		$(DESTDIR)$(DATADIR)/xsessions/dwm.desktop \
+		$(DESTDIR)$(PREFIX)/bin/dwmstart \
 
 .PHONY: all clean dist install uninstall

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+while true; do
+    pomodoro=$(dwmstatus-pomo)
+    internet=$(dwmstatus-internet)
+    cputemp=$(dwmstatus-cputemp)
+    storage=$(dwmstatus-storage)
+    memory=$(dwmstatus-memory)
+    volume=$(dwmstatus-volume)
+    acstate=$(dwmstatus-acstate 1)
+    batstate=$(dwmstatus-batstate 1)
+    batcapacity=$(dwmstatus-batcap 1)
+    mailbox=$(dwmstatus-mailbox)
+    datetime=$(dwmstatus-datetime)
+    user=$(dwmstatus-user)
+
+    xsetroot -name " $pomodoro$internet$cputemp $storage $memory $volume$acstate $batstate $batcapacity $mailbox $datetime $user"
+    sleep 1
+done

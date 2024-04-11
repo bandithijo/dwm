@@ -1,0 +1,9 @@
+#!/bin/bash
+
+ac_state=$(upower -i `upower -e | grep "AC"` | grep "online" | cut -d":" -f2 | xargs)
+
+if [[ "$ac_state" = "yes" ]]; then
+    printf " "
+else
+    printf " "
+fi

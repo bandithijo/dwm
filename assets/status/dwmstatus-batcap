@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# add batt number as argument after filename. eg: dwlb-batcap 1
+cap=$(cat /sys/class/power_supply/BAT$@/capacity)
+if   [[ "$cap" -ge 0 ]] && [[ "$cap" -le 10 ]]; then
+    printf "  "$cap"\n"
+elif [[ "$cap" -ge 11 ]] && [[ "$cap" -le 20 ]]; then
+    printf "  "$cap"\n"
+elif [[ "$cap" -ge 21 ]] && [[ "$cap" -le 30 ]]; then
+    printf "  "$cap"\n"
+elif [[ "$cap" -ge 31 ]] && [[ "$cap" -le 40 ]]; then
+    printf "  "$cap"\n"
+elif [[ "$cap" -ge 41 ]] && [[ "$cap" -le 50 ]]; then
+    printf "  "$cap"\n"
+elif [[ "$cap" -ge 51 ]] && [[ "$cap" -le 60 ]]; then
+    printf "  "$cap"\n"
+elif [[ "$cap" -ge 61 ]] && [[ "$cap" -le 70 ]]; then
+    printf "  "$cap"\n"
+elif [[ "$cap" -ge 71 ]] && [[ "$cap" -le 80 ]]; then
+    printf "  "$cap"\n"
+elif [[ "$cap" -ge 81 ]] && [[ "$cap" -le 90 ]]; then
+    printf "  "$cap"\n"
+elif [[ "$cap" -ge 91 ]] && [[ "$cap" -le 99 ]]; then
+    printf "  "$cap"\n"
+elif [[ "$cap" -eq 100 ]]; then
+    printf "  "$cap"\n"
+else
+    printf "  ?\n"
+fi

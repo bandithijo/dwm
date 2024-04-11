@@ -1,0 +1,57 @@
+#!/bin/bash
+
+#      
+
+# PulseAudio
+# COMPLETE
+volume_complete() {
+    ou_mute=$(pamixer --get-mute)
+    in_mute=$(pamixer --source 0 --get-mute)
+    ou_volu=$(pamixer --get-volume)
+    in_volu=$(pamixer --source 0 --get-volume)
+
+    # jack_stat=$($HOME/.local/bin/has_headphone)
+    bluetooth_headset=$($HOME/.local/bin/has_headset_head_unit)
+    # bluetooth_headset_battery=$($HOME/.local/bin/bluetooth_headset_battery_status)
+
+    icon_in_on=""
+    icon_in_off=""
+    icon_ou_on=""
+    icon_ou_off=""
+    if [[ "$bluetooth_headset" = "yes" ]]; then
+        icon_ou_on=" "
+        icon_ou_off=" "
+    fi
+
+    if   ([[ "$ou_mute" = "true" ]]  || [[ "$ou_mute" = "off" ]]) && ([[ "$in_mute" = "true" ]]  || [[ "$in_mute" = "off" ]]); then
+        printf "$icon_ou_off Ø $icon_in_off Ø "
+    elif ([[ "$ou_mute" = "true" ]]  || [[ "$ou_mute" = "off" ]]) && ([[ "$in_mute" = "false" ]] || [[ "$in_mute" = "on" ]]); then
+        printf "$icon_ou_off Ø $icon_in_on $in_volu "
+    elif ([[ "$ou_mute" = "false" ]] || [[ "$ou_mute" = "on" ]])  && ([[ "$in_mute" = "true" ]]  || [[ "$in_mute" = "off" ]]); then
+        printf "$icon_ou_on $ou_volu $icon_in_off Ø "
+    elif ([[ "$ou_mute" = "false" ]] || [[ "$ou_mute" = "on" ]])  && ([[ "$in_mute" = "false" ]] || [[ "$in_mute" = "on" ]]); then
+        printf "$icon_ou_on $ou_volu $icon_in_on $in_volu "
+    else
+        printf "$icon_ou_off ERROR "
+    fi
+}
+
+# SIMPLE
+volume_simple() {
+    [[ $(pamixer --get-mute) = true ]] && echo " Ø" && exit
+
+    vol="$(pamixer --get-volume)"
+
+    if   [[ "$vol" -gt "70" ]]; then
+        icon=" "
+    elif [[ "$vol" -lt "30" ]]; then
+        icon=" "
+    else
+        icon=" "
+    fi
+
+    echo "$icon$vol"
+}
+
+# Select between volume_complete or volume_simple for activate
+volume_complete

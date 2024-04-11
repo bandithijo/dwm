@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Lunch dbus-launch, this is important for some app
+if which dbus-launch >/dev/null && test -z "$DBUS_SESSION_BUS_ADDRESS"; then
+    eval "$(dbus-launch --sh-syntax --exit-with-session)"
+fi
+
+# Source ~/.xinitrc
+if [ -f ~/.xinitrc ]; then
+    source ~/.xinitrc
+fi
+
+# Launch dwm
+while true; do
+   # Log stderror to a file
+   /usr/local/bin/dwm 2> ~/.dwm.log
+done

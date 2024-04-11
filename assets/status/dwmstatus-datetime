@@ -1,0 +1,7 @@
+#!/bin/bash
+
+icon_date=""
+icon_time=""
+date="$(date +"%a, %d %b %Y")"
+time="$(date +"%l:%M %p")"
+printf "$icon_date $date $icon_time $time"

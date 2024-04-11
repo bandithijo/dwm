@@ -1,0 +1,10 @@
+#!/bin/bash
+
+icon=""
+mem_percentage=$(free | awk '/^Mem:/ {print ($3/$2)*100}')
+mem_percentage=$(printf "%.0f\n" "$mem_percentage")
+if [[ "$mem_percentage" -ge 80 ]]; then
+    printf "^$icon ${mem_percentage//%}\n"
+else
+    printf "$icon ${mem_percentage//%}\n"
+fi
