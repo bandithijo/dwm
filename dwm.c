@@ -154,8 +154,8 @@ typedef struct {
 	unsigned int tags;
 	int iscentered;
 	int isfloating;
-	int monitor;
 	int bw;
+	int monitor;
 } Rule;
 
 /* function declarations */
