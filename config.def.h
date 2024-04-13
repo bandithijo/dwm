@@ -13,6 +13,7 @@ static const int topbar             = 1;        /* 0 means standard bar at botto
 static const int extrabar           = 1;        /* 0 means no extra bar */
 static const char statussep         = ';';      /* separator between statuses */
 static const int focusonwheel       = 0;
+static const int nmaxmaster         = 6;        /* maximum number of clients allowed in master area */
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
