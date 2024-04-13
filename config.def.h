@@ -108,6 +108,11 @@ static const Key keys[] = {
 	{ MODKEY|ControlMask,		    XK_j,	   movekeyboard_y, {.i = 20}},
 	{ MODKEY|ControlMask,		    XK_k,	   movekeyboard_y, {.i = -20}},
 	{ MODKEY|ControlMask,           XK_x,      movecenter,     {0} },
+	{ MODKEY|ShiftMask,             XK_Up,     movethrow,      {.ui = DIR_N }},
+	{ MODKEY|ShiftMask,             XK_Down,   movethrow,      {.ui = DIR_S }},
+	{ MODKEY|ShiftMask,             XK_Left,   movethrow,      {.ui = DIR_W }},
+	{ MODKEY|ShiftMask,             XK_Right,  movethrow,      {.ui = DIR_E }},
+	{ MODKEY|ShiftMask,             XK_m,      movethrow,      {.ui = DIR_C }},
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
