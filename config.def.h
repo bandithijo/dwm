@@ -101,6 +101,10 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	{ MODKEY|ControlMask,		    XK_l,	   movekeyboard_x, {.i = 20}},
+	{ MODKEY|ControlMask,		    XK_h,	   movekeyboard_x, {.i = -20}},
+	{ MODKEY|ControlMask,		    XK_j,	   movekeyboard_y, {.i = 20}},
+	{ MODKEY|ControlMask,		    XK_k,	   movekeyboard_y, {.i = -20}},
 	{ MODKEY|ControlMask,           XK_x,      movecenter,     {0} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
