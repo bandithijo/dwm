@@ -18,10 +18,14 @@ static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
+static const char col_red[]         = "#FF0000";
+static const char col_orange[]      = "#FF8800";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeScratchSel]  = { col_gray4, col_cyan,  col_red  },
+	[SchemeScratchNorm] = { col_gray4, col_cyan,  col_orange },
 };
 
 /* tagging */
@@ -32,16 +36,19 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class                    instance    title       tags mask     iscentered   isfloating   monitor */
+	/* class                    instance    title           tags mask     iscentered   isfloating   monitor   scratch key */
     /* Non FLoating */
-	{ "Gimp",                   NULL,       NULL,       0,            1,           0,           -1 },
-	{ "Firefox",                NULL,       NULL,       2,            1,           0,           -1 },
-    { "Google-chrome",          NULL,       NULL,       2,            1,           0,           -1 },
-	/* class                    instance    title       tags mask     iscentered   isfloating   monitor */
+	{ "Gimp",                   NULL,       NULL,           0,            1,           0,           -1,       0},
+	{ "Firefox",                NULL,       NULL,           2,            1,           0,           -1,       0},
+    { "Google-chrome",          NULL,       NULL,           2,            1,           0,           -1,       0},
+	/* class                    instance    title           tags mask     iscentered   isfloating   monitor   scratch key */
     /* FLoating */
-    { "Xdg-desktop-portal-gtk", NULL,       NULL,       0,            1,           1,           -1 },
-    { "gnome-calculator",       NULL,       NULL,       0,            1,           1,           -1 },
-    { "org.gnome.Nautilus",     NULL,       NULL,       0,            1,           1,           -1 },
+    { "Xdg-desktop-portal-gtk", NULL,       NULL,           0,            1,           1,           -1,       0 },
+    { "gnome-calculator",       NULL,       NULL,           0,            1,           1,           -1,       0 },
+    { "org.gnome.Nautilus",     NULL,       NULL,           0,            1,           1,           -1,       0 },
+	/* class                    instance    title           tags mask     iscentered   isfloating   monitor   scratch key */
+    /* Scratchpad */
+	{ NULL,                     NULL,       "scratchpad",   0,            0,           1,           -1,       's' },
 };
 
 /* layout(s) */
@@ -74,11 +81,16 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
+/*First arg only serves to match against key in rules*/
+static const char *scratchpadcmd[] = { "s", "st", "-t", "scratchpad", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_minus,  togglescratch,  {.v = scratchpadcmd } },
+	{ MODKEY|ShiftMask,             XK_minus,  removescratch,  {.v = scratchpadcmd } },
+	{ MODKEY|ControlMask,           XK_minus,  setscratch,     {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY|ShiftMask,             XK_b,      toggleextrabar, {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
