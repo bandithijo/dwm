@@ -28,6 +28,12 @@ static const char *colors[][3]      = {
 	[SchemeScratchNorm] = { col_gray4, col_cyan,  col_orange },
 };
 
+/* autostart */
+static const char *const autostart[] = {
+    "st", NULL,
+	NULL /* terminate */
+};
+
 /* tagging */
 static const char *tags[] =     { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
 static const int taglayouts[] = {  0,   2,   0,   0,   0,   0,   0,   2,   0,   0 };
