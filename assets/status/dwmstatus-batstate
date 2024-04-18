@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# add batt number as argument after filename. eg: dwlb-bstate 1
+# add batt number as argument after filename. eg: dwmstatus-bstate 1
 state=$(cat /sys/class/power_supply/BAT$@/status)
 if   [[ $state = "charging"      ]] || [[ $state = "Charging"     ]]; then
     printf "\n" # charging
