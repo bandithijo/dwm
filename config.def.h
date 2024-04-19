@@ -4,10 +4,11 @@
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
-static const int heightbar          = 24;       /* height of bar */
 static const char *fonts[]          = { "monospace:size=10" };
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#222222";
+static const int user_bh            = 8;        /* 2 is the default spacing around the bar's font */
+static const int user_bh            = 5;        /* 2 is the default spacing around the bar's font */
 static const int showbar            = 1;        /* 0 means no standard bar */
 static const int topbar             = 1;        /* 0 means standard bar at bottom */
 static const int extrabar           = 1;        /* 0 means no extra bar */
