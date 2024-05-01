@@ -88,14 +88,15 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "j4-dmenu-desktop", "--dmenu=dmenu -i -p ' Apps:'", "--no-generic", "--use-xdg-de", NULL };
+static const char *roficmd[] = { "rofi", "-show", "drun", "-display-drun", " Apps", "-theme-str", "window {width: 25%; height: 14.6%;}", "-i", "-sort", "-location", "0", NULL };
 static const char *termcmd[]  = { "st", NULL };
 /*First arg only serves to match against key in rules*/
 static const char *scratchpadcmd[] = { "s", "st", "-t", "scratchpad", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_p,      spawn,          {.v = roficmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_minus,  togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY|ShiftMask,             XK_minus,  removescratch,  {.v = scratchpadcmd } },
