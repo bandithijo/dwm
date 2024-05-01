@@ -14,6 +14,6 @@ while true; do
     datetime=$(dwmstatus-datetime)
     user=$(dwmstatus-user)
 
-    xsetroot -name " $pomodoro$internet$cputemp $storage $memory $volume$acstate$batstate $batcapacity $mailbox $datetime $user;;"
+    xsetroot -name " $pomodoro$internet$cputemp $storage $memory $volume$acstate$batstate $batcapacity $mailbox $datetime $user"
     sleep 1
 done
