@@ -1844,8 +1844,13 @@ resizeclient(Client *c, int x, int y, int w, int h)
 	if (c->isfloating || c->mon->lt[c->mon->sellt]->arrange == NULL) {
 		gapincr = gapoffset = 0;
 	} else {
-		gapoffset = gappx;
-		gapincr = 2 * gappx;
+		if (c->mon->lt[c->mon->sellt]->arrange == monocle || n == 1) {
+			gapoffset = gappx;
+			gapincr = 2 * gappx;
+		} else {
+			gapoffset = gappx;
+			gapincr = 2 * gappx;
+		}
 	}
 
 	c->oldx = c->x; c->x = wc.x = x + gapoffset;
@@ -2320,7 +2325,7 @@ tile(Monitor *m)
 	if (n > m->nmaster)
 		mw = m->nmaster ? m->ww * m->mfact : 0;
 	else
-		mw = m->ww - gappx;
+		mw = m->ww - (n > 1 ? gappx : 0);
 	for (i = my = ty = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
 		if (i < m->nmaster) {
 			h = (m->wh - my) / (MIN(n, m->nmaster) - i);
