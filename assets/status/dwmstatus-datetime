@@ -2,6 +2,6 @@
 
 icon_date=""
 icon_time=""
-date="$(date +"%a, %d %b %Y")"
-time="$(date +"%l:%M %p")"
+date="$(date +"%u,%Y/%m/%d")"
+time="$(date +"%H:%M")"
 printf "$icon_date $date $icon_time $time"
