@@ -34,7 +34,9 @@ static const char *colors[][3]      = {
 
 /* autostart */
 static const char *const autostart[] = {
-    "st", NULL,
+	"dwmstatus", NULL,
+	"dunst", "-config", "~/.config/dunst/dunstrc", NULL,
+	"xcompmgr", NULL,
 	NULL /* terminate */
 };
 
