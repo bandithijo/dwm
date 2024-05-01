@@ -1,6 +1,8 @@
 /* See LICENSE file for copyright and license details. */
 
+#include <X11/XF86keysym.h>
 #include "exitdwm.c"
+
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int gappx     = 14;       /* gaps between windows */
@@ -131,6 +133,21 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "j4-dmenu-desktop", "--dmenu=dmenu -i -p ' Apps:'", "--no-generic", "--use-xdg-de", NULL };
 static const char *roficmd[] = { "rofi", "-show", "drun", "-display-drun", " Apps", "-theme-str", "window {width: 25%; height: 14.6%;}", "-i", "-sort", "-location", "0", NULL };
 static const char *termcmd[]  = { "st", NULL };
+static const char *upvol[]    = { "pamixer", "-i", "1", NULL };
+static const char *downvol[]  = { "pamixer", "-d", "1", NULL };
+static const char *mutevol[]  = { "pamixer", "--toggle-mute", NULL };
+static const char *playerplaypause[] = { "playerctl", "play-pause", NULL };
+static const char *playerstop[] = { "playerctl", "stop", NULL };
+static const char *playernext[] = { "playerctl", "next", NULL };
+static const char *playerprev[] = { "playerctl", "previous", NULL };
+static const char *brightnessup[] = { "light", "-A", "5", NULL };
+static const char *brightnessdown[] = { "light", "-U", "5", NULL };
+static const char *clipmenu[] = { "clipmenu", NULL };
+static const char *clipdel[] = { "clipdel", "-d", ".", NULL };
+static const char *dunsthistory[] = { "dunstctl", "history-pop", NULL };
+static const char *dunstclose[] = { "dunstctl", "close", NULL };
+static const char *dunstcloseall[] = { "dunstctl", "close-all", NULL };
+
 /*First arg only serves to match against key in rules*/
 static const char *scratchpadcmd[] = { "s", "st", "-t", "scratchpad", NULL };
 
@@ -185,6 +202,20 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      exitdwm,        {0} },
+	{ 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = upvol } },
+	{ 0,                            XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
+	{ 0,                            XF86XK_AudioMute, spawn,   {.v = mutevol } },
+	{ 0,                            XF86XK_AudioPlay, spawn,   {.v = playerplaypause } },
+	{ 0,                            XF86XK_AudioStop, spawn,   {.v = playerstop } },
+	{ 0,                            XF86XK_AudioNext, spawn,   {.v = playernext } },
+	{ 0,                            XF86XK_AudioPrev, spawn,   {.v = playerprev } },
+	{ 0,                            XF86XK_MonBrightnessUp, spawn, {.v = brightnessup } },
+	{ 0,                            XF86XK_MonBrightnessDown, spawn, {.v = brightnessdown } },
+	{ MODKEY,                       XK_apostrophe,    spawn,   {.v = clipmenu } },
+	{ MODKEY|ShiftMask,             XK_apostrophe,    spawn,   {.v = clipdel } },
+	{ Mod1Mask,                     XK_grave,         spawn,   {.v = dunsthistory } },
+	{ Mod1Mask,                     XK_space,         spawn,   {.v = dunstclose } },
+	{ Mod1Mask|ShiftMask,           XK_space,         spawn,   {.v = dunstcloseall } },
 };
 
 /* button definitions */
