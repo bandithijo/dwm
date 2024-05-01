@@ -5,8 +5,8 @@
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int gappx     = 14;       /* gaps between windows */
-static const int vertpad            = 14;       /* vertical padding of bar */
+static const unsigned int gappx     = 12;       /* gaps between windows */
+static const int vertpad            = 12;       /* vertical padding of bar */
 static const int sidepad            = 250;      /* horizontal padding of bar */
 static const unsigned int snap      = 5;        /* snap pixel */
 static const int user_bh            = 5;        /* 2 is the default spacing around the bar's font */
