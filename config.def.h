@@ -49,19 +49,55 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class                    instance    title           tags mask     iscentered   isfloating   monitor   scratch key */
-    /* Non FLoating */
-	{ "Gimp",                   NULL,       NULL,           0,            1,           0,           -1,       0},
-	{ "Firefox",                NULL,       NULL,           2,            1,           0,           -1,       0},
-    { "Google-chrome",          NULL,       NULL,           2,            1,           0,           -1,       0},
-	/* class                    instance    title           tags mask     iscentered   isfloating   monitor   scratch key */
-    /* FLoating */
-    { "Xdg-desktop-portal-gtk", NULL,       NULL,           0,            1,           1,           -1,       0 },
-    { "gnome-calculator",       NULL,       NULL,           0,            1,           1,           -1,       0 },
-    { "org.gnome.Nautilus",     NULL,       NULL,           0,            1,           1,           -1,       0 },
-	/* class                    instance    title           tags mask     iscentered   isfloating   monitor   scratch key */
-    /* Scratchpad */
-	{ NULL,                     NULL,       "scratchpad",   0,            0,           1,           -1,       's' },
+	/* class                      instance                title                      tags mask   iscentered   isfloating   monitor		scratch key */
+	/* Non FLoating */
+	{ "Gimp-2.10",                NULL,                   NULL,                      0,          1,           0,           -1,          0 },
+	{ "firefox",                  NULL,                   NULL,                      2,          1,           0,           -1,          0 },
+	{ "Google-chrome",            NULL,                   NULL,                      2,          1,           0,           -1,          0 },
+	{ "TelegramDesktop",          NULL,                   NULL,                      1 << 7,     1,           0,           -1,          0 },
+	{ "discord",                  NULL,                   NULL,                      1 << 7,     1,           0,           -1,          0 },
+	{ "Slack",                    NULL,                   NULL,                      1 << 7,     1,           0,           -1,          0 },
+	{ "calibre",                  NULL,                   NULL,                      0,          1,           0,           -1,          0 },
+	{ "Evince",                   NULL,                   NULL,                      0,          1,           0,           -1,          0 },
+	{ "DBeaver",                  NULL,                   NULL,                      1 << 4,     1,           0,           -1,          0 },
+	{ "St",                       NULL,                   "st",                      0,          1,           0,           -1,          0 },
+	{ "St",                       NULL,                   "Ranger",                  0,          1,           0,           -1,          0 },
+	{ "St",                       NULL,                   "Neomutt",                 1 << 6,     1,           0,           -1,          0 },
+	{ "St",                       NULL,                   "Newsboat",                1 << 6,     1,           0,           -1,          0 },
+	{ "St",                       NULL,                   "WeeChat",                 1 << 6,     1,           0,           -1,          0 },
+	/* class                      instance                title                      tags mask   iscentered   isfloating   monitor		scratch key */
+	/* FLoating */
+	{ "St",                       NULL,                   "st^",                     0,          1,           1,           -1,          0 },
+	{ "St",                       NULL,                   "st^:",                    0,          0,           1,           -1,          0 },
+	{ "Xdg-desktop-portal-gtk",   NULL,                   NULL,                      0,          1,           1,           -1,          0 },
+	{ "gnome-system-monitor",     NULL,                   NULL,                      0,          1,           1,           -1,          0 },
+	{ "gnome-calculator",         NULL,                   NULL,                      0,          1,           1,           -1,          0 },
+	{ "gnome-calendar",           NULL,                   NULL,                      0,          1,           1,           -1,          0 },
+	{ "snapshot",                 NULL,                   NULL,                      0,          1,           1,           -1,          0 },
+	{ "org.gnome.Nautilus",       NULL,                   NULL,                      0,          1,           1,           -1,          0 },
+	{ "org.gnome.Characters",     NULL,                   NULL,                      0,          1,           1,           -1,          0 },
+	{ "io.github.celluloid_player.Celluloid", NULL,       NULL,                      0,          1,           1,           -1,          0 },
+	{ "mpv",                      NULL,                   NULL,                      0,          1,           1,           -1,          0 },
+	{ "Arandr",                   NULL,                   NULL,                      0,          1,           1,           -1,          0 },
+	{ "Gcolor2",                  NULL,                   NULL,                      0,          1,           1,           -1,          0 },
+	{ "Gcolor3",                  NULL,                   NULL,                      0,          1,           1,           -1,          0 },
+	{ "SimpleScreenRecorder",     NULL,                   NULL,                      0,          1,           1,           -1,          0 },
+	{ "Barrier",                  NULL,                   NULL,                      0,          1,           1,           -1,          0 },
+	{ "Pavucontrol",              NULL,                   NULL,                      0,          1,           1,           -1,          0 },
+	{ "vokoscreen",               NULL,                   NULL,                      0,          1,           1,           -1,          0 },
+	{ "Blueman-manager",          NULL,                   NULL,                      0,          1,           1,           -1,          0 },
+	{ "GParted",                  NULL,                   NULL,                      0,          1,           1,           -1,          0 },
+	{ "Crow Translate",           NULL,                   NULL,                      0,          1,           1,           -1,          0 },
+	{ "Dragon-drag-and-drop",     NULL,                   NULL,                      0,          1,           1,           -1,          0 },
+	{ "Dragon",                   NULL,                   NULL,                      0,          1,           1,           -1,          0 },
+	{ "Soundconverter",           "Soundconverter",       "Soundconverter",          0,          1,           1,           -1,          0 },
+	{ "System-config-printer.py", NULL,                   NULL,                      0,          1,           1,           -1,          0 },
+	{ "Nm-connection-editor",     NULL,                   "Network Connections",     0,          1,           1,           -1,          0 },
+	{ "Thunar",                   "thunar",               "File Operation Progress", 0,          1,           1,           -1,          0 },
+	{ "Java",                     "java",                 "Dbeaver",                 1 << 4,     1,           1,           -1,          0 },
+	/* class                      instance                title                      tags mask   iscentered   isfloating   monitor		scratch key */
+	/* Scratchpad */
+	{ NULL,                       NULL,                   "scratchpad",              0,          0,           1,           -1,          's' },
 };
 
 /* layout(s) */
