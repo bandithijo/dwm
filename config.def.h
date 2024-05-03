@@ -1,7 +1,6 @@
 /* See LICENSE file for copyright and license details. */
 
 #include <X11/XF86keysym.h>
-#include "exitdwm.c"
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -199,7 +198,6 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	TAGKEYS(                        XK_0,                      9)
-	{ MODKEY|ShiftMask,             XK_q,      exitdwm,        {0} },
 	{ 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = upvol } },
 	{ 0,                            XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
 	{ 0,                            XF86XK_AudioMute, spawn,   {.v = mutevol } },
