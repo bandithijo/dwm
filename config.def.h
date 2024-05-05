@@ -32,6 +32,13 @@ static const char *colors[][3]      = {
 	[SchemeScratchSel]  = { col_gray4, col_cyan,  col_red  },
 	[SchemeScratchNorm] = { col_gray4, col_cyan,  col_orange },
 };
+static const unsigned int baralpha  = 0x00;
+static const unsigned int borderalpha = OPAQUE;
+static const unsigned int alphas[][3] = {
+	/*               fg         bg         border*/
+	[SchemeNorm] = { OPAQUE,    baralpha,  borderalpha },
+	[SchemeSel]  = { OPAQUE,    baralpha,  borderalpha },
+};
 
 /* autostart */
 static const char *const autostart[] = {
