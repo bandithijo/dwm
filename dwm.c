@@ -67,7 +67,7 @@
 
 /* enums */
 enum { CurNormal, CurResize, CurMove, CurResizeHorzArrow, CurResizeVertArrow, CurLast }; /* cursor */
-enum { SchemeNorm, SchemeSel, SchemeTagSel, SchemeScratchNorm, SchemeScratchSel }; /* color schemes */
+enum { SchemeNorm, SchemeSel, SchemeTagSel, SchemeBorderNorm, SchemeScratchNorm, SchemeScratchSel }; /* color schemes */
 enum { NetSupported, NetWMName, NetWMState, NetWMCheck,
        NetWMFullscreen, NetActiveWindow, NetWMWindowType,
        NetWMWindowTypeDialog, NetClientList, NetClientInfo, NetLast }; /* EWMH atoms */
@@ -2590,7 +2590,7 @@ unfocus(Client *c, int setfocus)
 	if (c->scratchkey != 0)
 		XSetWindowBorder(dpy, c->win, scheme[SchemeScratchNorm][ColBorder].pixel);
 	else
-		XSetWindowBorder(dpy, c->win, scheme[SchemeNorm][ColBorder].pixel);
+		XSetWindowBorder(dpy, c->win, scheme[SchemeBorderNorm][ColBorder].pixel);
 	if (setfocus) {
 		XSetInputFocus(dpy, root, RevertToPointerRoot, CurrentTime);
 		XDeleteProperty(dpy, root, netatom[NetActiveWindow]);
