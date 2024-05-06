@@ -22,13 +22,16 @@ static const char col_gray1[]       = "#1e1e1e";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
+static const char col_white[]       = "#ffffff";
+static const char col_black[]       = "#000000";
 static const char col_cyan[]        = "#005f87";
 static const char col_red[]         = "#FF0000";
 static const char col_orange[]      = "#FF8800";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+	[SchemeNorm] = { col_gray4, col_black, col_black },
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeTagSel]  = { col_gray4, col_cyan,  col_cyan },
 	[SchemeScratchSel]  = { col_gray4, col_cyan,  col_red  },
 	[SchemeScratchNorm] = { col_gray4, col_cyan,  col_orange },
 };
