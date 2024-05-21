@@ -33,8 +33,8 @@ static const char *colors[][3]      = {
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
 	[SchemeTagSel]  = { col_gray4, col_cyan,  col_cyan },
 	[SchemeBorderNorm] = { col_gray4, col_gray2, col_gray2 },
-	[SchemeScratchSel]  = { col_gray4, col_cyan,  col_red  },
-	[SchemeScratchNorm] = { col_gray4, col_cyan,  col_orange },
+	[SchemeScratchSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeScratchNorm] = { col_gray4, col_cyan,  col_gray2 },
 };
 static const unsigned int baralpha  = 0x00;
 static const unsigned int borderalpha = OPAQUE;
