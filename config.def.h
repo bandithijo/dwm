@@ -143,7 +143,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "j4-dmenu-desktop", "--dmenu=dmenu -i -p ' Apps:'", "--no-generic", "--use-xdg-de", NULL };
-static const char *roficmd[] = { "rofi", "-show", "drun", "-display-drun", " Apps", "-theme-str", "window {width: 25%; height: 14.6%;}", "-i", "-sort", "-location", "0", NULL };
+static const char *roficmd[] = { "rofi", "-show", "drun", "-display-drun", " Apps", "-theme-str", "window {width: 25%; height: 14.8%;}", "-i", "-sort", "-location", "0", NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *upvol[]    = { "pamixer", "-i", "1", NULL };
 static const char *downvol[]  = { "pamixer", "-d", "1", NULL };
