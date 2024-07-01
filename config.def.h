@@ -99,6 +99,7 @@ static const Rule rules[] = {
 	{ "Barrier",                  NULL,                   NULL,                      0,          1,           1,           -1,          0 },
 	{ "Pavucontrol",              NULL,                   NULL,                      0,          1,           1,           -1,          0 },
 	{ "vokoscreen",               NULL,                   NULL,                      0,          1,           1,           -1,          0 },
+	{ "Gpu-screen-recorder-gtk",  NULL,                   NULL,                      0,          1,           1,           -1,          0 },
 	{ "Blueman-manager",          NULL,                   NULL,                      0,          1,           1,           -1,          0 },
 	{ "GParted",                  NULL,                   NULL,                      0,          1,           1,           -1,          0 },
 	{ "Crow Translate",           NULL,                   NULL,                      0,          1,           1,           -1,          0 },
