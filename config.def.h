@@ -102,7 +102,7 @@ static const Rule rules[] = {
 	{ "Gpu-screen-recorder-gtk",  NULL,                   NULL,                      0,          1,           1,           -1,          0 },
 	{ "Blueman-manager",          NULL,                   NULL,                      0,          1,           1,           -1,          0 },
 	{ "GParted",                  NULL,                   NULL,                      0,          1,           1,           -1,          0 },
-	{ "Crow Translate",           NULL,                   NULL,                      0,          1,           1,           -1,          0 },
+	{ "crow-translate",           NULL,                   NULL,                      0,          1,           1,           -1,          0 },
 	{ "Dragon-drag-and-drop",     NULL,                   NULL,                      0,          1,           1,           -1,          0 },
 	{ "Dragon",                   NULL,                   NULL,                      0,          1,           1,           -1,          0 },
 	{ "Soundconverter",           "Soundconverter",       "Soundconverter",          0,          1,           1,           -1,          0 },
