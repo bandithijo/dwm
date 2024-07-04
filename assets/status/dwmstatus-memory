@@ -2,7 +2,8 @@
 
 icon=""
 mem_percentage=$(free | awk '/^Mem:/ {print ($3/$2)*100}')
-mem_percentage=$(printf "%.0f\n" "$mem_percentage")
+# mem_percentage=$(printf "%.0f\n" "$mem_percentage")
+mem_percentage=$(echo "$mem_percentage" | awk '{print int($1)}')
 if [[ "$mem_percentage" -ge 80 ]]; then
     echo "$icon ${mem_percentage}%"
 else
