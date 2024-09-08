@@ -4,7 +4,7 @@
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int gappx     = 12;       /* gaps between windows */
+static const unsigned int gappx     = 16;       /* gaps between windows */
 static const int vertpad            = 12;       /* vertical padding of bar */
 static const int sidepad            = 250;      /* horizontal padding of bar */
 static const unsigned int snap      = 5;        /* snap pixel */
@@ -18,20 +18,20 @@ static const char *fonts[]          = {
 	"Twitter Color Emoji:pixelsize=15:antialias=true:autohint=true",
 };
 static const char dmenufont[]       = "JetBrainsMono Nerd Font Bandit:style=Medium:pixelsize=15";
-static const char col_gray1[]       = "#1e1e1e";
-static const char col_gray2[]       = "#444444";
+static const char col_gray1[]       = "#1E1E1E"; // 1E1E1E // 002B36
+static const char col_gray2[]       = "#444444"; // 444444 // 264B54
 static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_white[]       = "#ffffff";
+static const char col_gray4[]       = "#EEEEEE"; // EEEEEE // 93A1A1
+static const char col_white[]       = "#FFFFFF"; // FFFFFF
 static const char col_black[]       = "#000000";
-static const char col_cyan[]        = "#005f87";
+static const char col_cyan[]        = "#005F87"; // 005F87 // 2AA198
 static const char col_red[]         = "#FF0000";
 static const char col_orange[]      = "#FF8800";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray4, col_black, col_black },
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
-	[SchemeTagSel]  = { col_gray4, col_cyan,  col_cyan },
+	[SchemeTagSel]  = { col_white, col_cyan,  col_cyan },
 	[SchemeBorderNorm] = { col_gray4, col_gray2, col_gray2 },
 	[SchemeScratchSel]  = { col_gray4, col_cyan,  col_cyan  },
 	[SchemeScratchNorm] = { col_gray4, col_cyan,  col_gray2 },
@@ -79,6 +79,8 @@ static const Rule rules[] = {
 	{ "St",                       NULL,                   "Neomutt",                 1 << 6,     1,           0,           -1,          0 },
 	{ "St",                       NULL,                   "Newsboat",                1 << 6,     1,           0,           -1,          0 },
 	{ "St",                       NULL,                   "WeeChat",                 1 << 6,     1,           0,           -1,          0 },
+	{ "Soffice",                  "soffice",              NULL,                      0,          1,           0,           -1,          0 },
+	{ "Soffice",                  "soffice",              "Presenting: ",            0,          1,           0,           -1,          0 },
 	/* class                      instance                title                      tags mask   iscentered   isfloating   monitor		scratch key */
 	/* FLoating */
 	{ "St",                       NULL,                   "st^",                     0,          1,           1,           -1,          0 },
@@ -97,7 +99,7 @@ static const Rule rules[] = {
 	{ "Gcolor3",                  NULL,                   NULL,                      0,          1,           1,           -1,          0 },
 	{ "SimpleScreenRecorder",     NULL,                   NULL,                      0,          1,           1,           -1,          0 },
 	{ "Barrier",                  NULL,                   NULL,                      0,          1,           1,           -1,          0 },
-	{ "Pavucontrol",              NULL,                   NULL,                      0,          1,           1,           -1,          0 },
+	{ "pavucontrol",              NULL,                   NULL,                      0,          1,           1,           -1,          0 },
 	{ "vokoscreen",               NULL,                   NULL,                      0,          1,           1,           -1,          0 },
 	{ "Gpu-screen-recorder-gtk",  NULL,                   NULL,                      0,          1,           1,           -1,          0 },
 	{ "Blueman-manager",          NULL,                   NULL,                      0,          1,           1,           -1,          0 },
@@ -111,6 +113,7 @@ static const Rule rules[] = {
 	{ "Nm-connection-editor",     NULL,                   "Network Connections",     0,          1,           1,           -1,          0 },
 	{ "Thunar",                   "thunar",               "File Operation Progress", 0,          1,           1,           -1,          0 },
 	{ "Java",                     "java",                 "Dbeaver",                 1 << 4,     1,           1,           -1,          0 },
+	{ "Soffice",                  NULL,                   "Print",                   0,          1,           1,           -1,          0 },
 	/* class                      instance                title                      tags mask   iscentered   isfloating   monitor		scratch key */
 	/* Scratchpad */
 	{ NULL,                       NULL,                   "scratchpad",              0,          0,           1,           -1,          's' },
