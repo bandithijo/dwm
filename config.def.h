@@ -164,6 +164,7 @@ static const char *clipdel[] = { "clipdel", "-d", ".", NULL };
 static const char *dunsthistory[] = { "dunstctl", "history-pop", NULL };
 static const char *dunstclose[] = { "dunstctl", "close", NULL };
 static const char *dunstcloseall[] = { "dunstctl", "close-all", NULL };
+static const char *flameshotgui[] = { "flameshot", "gui", NULL };
 
 /*First arg only serves to match against key in rules*/
 static const char *scratchpadcmd[] = { "s", "st", "-t", "scratchpad", NULL };
@@ -231,6 +232,7 @@ static const Key keys[] = {
 	{ Mod1Mask,                     XK_grave,         spawn,   {.v = dunsthistory } },
 	{ Mod1Mask,                     XK_space,         spawn,   {.v = dunstclose } },
 	{ Mod1Mask|ShiftMask,           XK_space,         spawn,   {.v = dunstcloseall } },
+	{ Mod1Mask,                     XK_u,             spawn,   {.v = flameshotgui } },
 };
 
 /* button definitions */
