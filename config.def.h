@@ -114,6 +114,7 @@ static const Rule rules[] = {
 	{ "Thunar",                   "thunar",               "File Operation Progress", 0,          1,           1,           -1,          0 },
 	{ "Java",                     "java",                 "Dbeaver",                 1 << 4,     1,           1,           -1,          0 },
 	{ "Soffice",                  NULL,                   "Print",                   0,          1,           1,           -1,          0 },
+	{ "missioncenter",            NULL,                   NULL,                      0,          1,           1,           -1,          0 },
 	/* class                      instance                title                      tags mask   iscentered   isfloating   monitor		scratch key */
 	/* Scratchpad */
 	{ NULL,                       NULL,                   "scratchpad",              0,          0,           1,           -1,          's' },
