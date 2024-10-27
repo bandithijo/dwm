@@ -4,13 +4,13 @@
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int gappx     = 16;       /* gaps between windows */
-static const int vertpad            = 12;       /* vertical padding of bar */
-static const int sidepad            = 250;      /* horizontal padding of bar */
+static const unsigned int gappx     = 0;        /* gaps between windows */
+static const int vertpad            = 0;        /* vertical padding of bar */
+static const int sidepad            = 0;        /* horizontal padding of bar */
 static const unsigned int snap      = 5;        /* snap pixel */
 static const int user_bh            = 5;        /* 2 is the default spacing around the bar's font */
 static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 0;        /* 0 means bottom bar */
+static const int topbar             = 1;        /* 0 means bottom bar */
 static const int focusonwheel       = 0;
 static const int nmaxmaster         = 6;        /* maximum number of clients allowed in master area */
 static const char *fonts[]          = {
@@ -29,7 +29,7 @@ static const char col_red[]         = "#FF0000";
 static const char col_orange[]      = "#FF8800";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray4, col_black, col_black },
+	[SchemeNorm] = { col_gray4, col_gray1, col_gray1 },
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
 	[SchemeTagSel]  = { col_white, col_cyan,  col_cyan },
 	[SchemeBorderNorm] = { col_gray4, col_gray2, col_gray2 },
@@ -40,8 +40,8 @@ static const unsigned int baralpha  = 0x00;
 static const unsigned int borderalpha = OPAQUE;
 static const unsigned int alphas[][3] = {
 	/*               fg         bg         border*/
-	[SchemeNorm] = { OPAQUE,    baralpha,  borderalpha },
-	[SchemeSel]  = { OPAQUE,    baralpha,  borderalpha },
+	[SchemeNorm] = { OPAQUE,    OPAQUE,  borderalpha },
+	[SchemeSel]  = { OPAQUE,    OPAQUE,  borderalpha },
 	[SchemeTagSel]  = { OPAQUE, OPAQUE,  OPAQUE },
 };
 
