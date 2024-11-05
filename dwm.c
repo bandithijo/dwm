@@ -102,7 +102,7 @@ struct Client {
 	int basew, baseh, incw, inch, maxw, maxh, minw, minh, hintsvalid;
 	int bw, oldbw;
 	unsigned int tags;
-	int isfixed, iscentered, isfloating, isurgent, neverfocus, oldstate, isfullscreen, issticky;
+	int isfixed, iscentered, isfloating, isurgent, neverfocus, oldstate, isfullscreen, issticky, cantfocus;
 	char scratchkey;
 	Client *next;
 	Client *snext;
@@ -213,6 +213,7 @@ static void quit(const Arg *arg);
 static void quitprompt(const Arg *arg);
 static Monitor *recttomon(int x, int y, int w, int h);
 static void removescratch(const Arg *arg);
+static void resetcanfocusfloating();
 static void resetlayout(const Arg *arg);
 static void resize(Client *c, int x, int y, int w, int h, int interact);
 static void resizeclient(Client *c, int x, int y, int w, int h);
@@ -239,6 +240,7 @@ static void tag(const Arg *arg);
 static void tagmon(const Arg *arg);
 static void tile(Monitor *m);
 static void togglebar(const Arg *arg);
+static void togglecanfocusfloating(const Arg *arg);
 static void togglefloating(const Arg *arg);
 static void togglescratch(const Arg *arg);
 static void togglesticky(const Arg *arg);
@@ -1195,6 +1197,8 @@ focus(Client *c)
 	if (selmon->sel && selmon->sel != c)
 		unfocus(selmon->sel, 0);
 	if (c) {
+		if (c->cantfocus)
+			return;
 		if (c->mon != selmon)
 			selmon = c->mon;
 		if (c->isurgent)
@@ -1247,16 +1251,16 @@ focusstack(const Arg *arg)
 	if (!selmon->sel || (selmon->sel->isfullscreen && lockfullscreen))
 		return;
 	if (arg->i > 0) {
-		for (c = selmon->sel->next; c && !ISVISIBLE(c); c = c->next);
+		for (c = selmon->sel->next; c && (!ISVISIBLE(c) || c->cantfocus); c = c->next);
 		if (!c)
-			for (c = selmon->clients; c && !ISVISIBLE(c); c = c->next);
+			for (c = selmon->clients; c && (!ISVISIBLE(c) || c->cantfocus); c = c->next);
 	} else {
 		for (i = selmon->clients; i != selmon->sel; i = i->next)
-			if (ISVISIBLE(i))
+			if (ISVISIBLE(i) && !i->cantfocus)
 				c = i;
 		if (!c)
 			for (; i; i = i->next)
-				if (ISVISIBLE(i))
+				if (ISVISIBLE(i) && !i->cantfocus)
 					c = i;
 	}
 	if (c) {
@@ -1917,6 +1921,23 @@ removescratch(const Arg *arg)
 }
 
 void
+resetcanfocusfloating()
+{
+	unsigned int i, n;
+	Client *c;
+
+	for (n = 0, c = selmon->clients; c; c = c->next, n++);
+	if (n == 0)
+		return;
+
+	for (i = 0, c = selmon->clients; c; c = c->next, i++)
+		if (c->isfloating)
+			c->cantfocus = 0;
+
+	arrange(selmon);
+}
+
+void
 resetlayout(const Arg *arg)
 {
 	Arg default_layout = {.v = &layouts[0]};
@@ -2475,6 +2496,40 @@ togglebar(const Arg *arg)
 }
 
 void
+togglecanfocusfloating(const Arg *arg)
+{
+	unsigned int n;
+	Client *c, *cf = NULL;
+
+	if (!selmon->sel)
+		return;
+
+	for (c = selmon->clients; c; c = c->next)
+		if (c->cantfocus == 1) {
+			cf = c;
+		}
+
+	if (cf) {
+		resetcanfocusfloating();
+		focus(cf);
+	} else {
+		for (n = 0, c = selmon->clients; c; c = c->next)
+			if (c->isfloating)
+				c->cantfocus = !c->cantfocus;
+			else
+				n++;
+
+		if (n && selmon->sel->isfloating) {
+			c = nexttiled(selmon->clients);
+			focus(c);
+		}
+	}
+
+	arrange(selmon);
+}
+
+
+void
 togglefloating(const Arg *arg)
 {
 	if (!selmon->sel)
@@ -2497,6 +2552,7 @@ togglefloating(const Arg *arg)
 	selmon->sel->x = selmon->sel->mon->mx + (selmon->sel->mon->mw - WIDTH(selmon->sel)) / 2;
 	selmon->sel->y = selmon->sel->mon->my + (selmon->sel->mon->mh - HEIGHT(selmon->sel)) / 2;
 
+	resetcanfocusfloating();
 	arrange(selmon);
 }
 
