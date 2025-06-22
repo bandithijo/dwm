@@ -14,8 +14,8 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const int focusonwheel       = 0;
 static const int nmaxmaster         = 6;        /* maximum number of clients allowed in master area */
 static const char *fonts[]          = {
-	"JetBrainsMono Nerd Font Bandit:style=Medium:pixelsize=15",
-	"Twitter Color Emoji:pixelsize=15:antialias=true:autohint=true",
+	"JetBrainsMono Nerd Font Bandit:style=Medium:pixelsize=14",
+	"Twitter Color Emoji:pixelsize=14:antialias=true:autohint=true",
 };
 static const char dmenufont[]       = "JetBrainsMono Nerd Font Bandit:style=Medium:pixelsize=15";
 static const char col_gray1[]       = "#1E1E1E"; // 1E1E1E // 002B36
