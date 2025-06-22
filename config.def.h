@@ -153,6 +153,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "j4-dmenu-desktop", "--dmenu=dmenu -i -p ' Apps:'", "--no-generic", "--use-xdg-de", NULL };
 static const char *roficmd[] = { "rofi", "-show", "drun", "-display-drun", " Apps", "-theme-str", "window {width: 25%; height: 14.8%;}", "-i", "-sort", "-location", "0", NULL };
+static const char *rofipowercmd[] = { "rofi-power", NULL};
 static const char *termcmd[]  = { "st", NULL };
 static const char *termfloatcmd[]  = { "st", "-t", "st^", NULL };
 static const char *upvol[]    = { "pamixer", "-i", "1", NULL };
@@ -169,6 +170,7 @@ static const char *clipdel[] = { "clipdel", "-d", ".", NULL };
 static const char *dunsthistory[] = { "dunstctl", "history-pop", NULL };
 static const char *dunstclose[] = { "dunstctl", "close", NULL };
 static const char *dunstcloseall[] = { "dunstctl", "close-all", NULL };
+static const char *scrotfull[] = { "scrot-full", NULL };
 static const char *flameshotgui[] = { "flameshot", "gui", NULL };
 
 /*First arg only serves to match against key in rules*/
@@ -177,6 +179,7 @@ static const char *scratchpadcmd[] = { "s", "st", "-t", "scratchpad", NULL };
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = roficmd } },
+	{ MODKEY|ShiftMask,             XK_End,    spawn,          {.v = rofipowercmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ControlMask,           XK_Return, spawn,          {.v = termfloatcmd } },
 	{ MODKEY,                       XK_minus,  togglescratch,  {.v = scratchpadcmd } },
@@ -242,7 +245,8 @@ static const Key keys[] = {
 	{ Mod1Mask,                     XK_grave,         spawn,   {.v = dunsthistory } },
 	{ Mod1Mask,                     XK_space,         spawn,   {.v = dunstclose } },
 	{ Mod1Mask|ShiftMask,           XK_space,         spawn,   {.v = dunstcloseall } },
-	{ Mod1Mask,                     XK_u,             spawn,   {.v = flameshotgui } },
+	{ Mod1Mask,                     XK_u,             spawn,   {.v = scrotfull } },
+	{ Mod1Mask|ShiftMask,           XK_u,             spawn,   {.v = flameshotgui } },
 };
 
 /* button definitions */
