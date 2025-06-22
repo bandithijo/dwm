@@ -49,6 +49,7 @@ static const unsigned int alphas[][3] = {
 static const char *const autostart[] = {
 	"dwmstatus", NULL,
 	"dunst", "-config", "~/.config/dunst/dunstrc", NULL,
+	"conky", "-c", "~/.config/conky/conkyrc", NULL,
 	/* "picom", "-config", "~/.config/picom/picom.conf", "-b", NULL, */
 	"xcompmgr", NULL,
 	NULL /* terminate */
