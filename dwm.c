@@ -580,6 +580,7 @@ buttonpress(XEvent *e)
 	}
 	if (ev->window == selmon->barwin) {
 		i = x = 0;
+		x = 50; /* customtext range */
 		do
 			x += TEXTW(tags[i]);
 		while (ev->x >= x && ++i < LENGTH(tags));
@@ -1119,10 +1120,11 @@ dragmfact(const Arg *arg)
 void
 drawbar(Monitor *m)
 {
-	int x, w, tw = 0;
+	int x, y, w, tw = 0;
 	int boxs = drw->fonts->h / 9;
 	int boxw = drw->fonts->h / 6 + 2;
 	unsigned int i, occ = 0, urg = 0;
+	const char *customtext = "    ";
 	Client *c;
 
 	if (!m->showbar)
@@ -1140,7 +1142,16 @@ drawbar(Monitor *m)
 		if (c->isurgent)
 			urg |= c->tags;
 	}
-	x = 0;
+
+	/* Draw custom text at the beginning */
+	x = -8; /* x position of customtext */
+	y = 8; /* y position of customtext */
+	drw_setscheme(drw, scheme[SchemeNorm]);
+	w = TEXTW(customtext);
+	drw_text(drw, x, 0, w, bh + y, lrpad / 2, customtext, 0);
+	x += w;
+
+	/* Draw tags starting after custom text */
 	for (i = 0; i < LENGTH(tags); i++) {
 		w = TEXTW(tags[i]);
 		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeTagSel : SchemeNorm]);
@@ -1151,6 +1162,7 @@ drawbar(Monitor *m)
 				urg & 1 << i);
 		x += w;
 	}
+
 	w = TEXTW(m->ltsymbol);
 	drw_setscheme(drw, scheme[SchemeNorm]);
 	x = drw_text(drw, x, 0, w, bh + 2, lrpad / 2, m->ltsymbol, 0);
