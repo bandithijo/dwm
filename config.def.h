@@ -86,6 +86,8 @@ static const Rule rules[] = {
 	/* FLoating */
 	{ "St",                       NULL,                   "st^",                     0,          1,           1,           -1,          0 },
 	{ "St",                       NULL,                   "st^:",                    0,          0,           1,           -1,          0 },
+	{ "St",                       NULL,                   "bluetuith",               0,          0,           1,           -1,          0 },
+	{ "St",                       NULL,                   "xprop",					 0,          0,           1,           -1,          0 },
 	{ "Xdg-desktop-portal-gtk",   NULL,                   NULL,                      0,          1,           1,           -1,          0 },
 	{ "gnome-system-monitor",     NULL,                   NULL,                      0,          1,           1,           -1,          0 },
 	{ "gnome-calculator",         NULL,                   NULL,                      0,          1,           1,           -1,          0 },
