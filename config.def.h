@@ -157,9 +157,12 @@ static const char *rofimagercmd[] = { "rofi-mager", NULL };
 static const char *rofipowercmd[] = { "rofi-power", NULL};
 static const char *termcmd[]  = { "st", NULL };
 static const char *termfloatcmd[]  = { "st", "-t", "st^", NULL };
-static const char *upvol[]    = { "pamixer-vol", "-i", "1", NULL };
-static const char *downvol[]  = { "pamixer-vol", "-d", "1", NULL };
-static const char *mutevol[]  = { "pamixer-vol-mute", NULL };
+static const char *outupvol[]    = { "pamixer-vol-out", "-i", "5", NULL };
+static const char *outdownvol[]  = { "pamixer-vol-out", "-d", "5", NULL };
+static const char *outmutevol[]  = { "pamixer-vol-out", "--toggle-mute", NULL };
+static const char *inupvol[]    = { "pamixer-vol-in", "-i", "5", NULL };
+static const char *indownvol[]  = { "pamixer-vol-in", "-d", "5", NULL };
+static const char *inmutevol[]  = { "pamixer-vol-in", "--toggle-mute", NULL };
 static const char *playerplaypause[] = { "playerctl", "play-pause", NULL };
 static const char *playerstop[] = { "playerctl", "stop", NULL };
 static const char *playernext[] = { "playerctl", "next", NULL };
@@ -233,9 +236,12 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	TAGKEYS(                        XK_0,                      9)
 	{ MODKEY|ShiftMask,             XK_q,      quitprompt,     {0} },
-	{ 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = upvol } },
-	{ 0,                            XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
-	{ 0,                            XF86XK_AudioMute, spawn,   {.v = mutevol } },
+	{ 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = outupvol } },
+	{ 0,                            XF86XK_AudioLowerVolume, spawn, {.v = outdownvol } },
+	{ 0,                            XF86XK_AudioMute, spawn,   {.v = outmutevol } },
+	{ 0|ShiftMask,                  XF86XK_AudioRaiseVolume, spawn, {.v = inupvol } },
+	{ 0|ShiftMask,                  XF86XK_AudioLowerVolume, spawn, {.v = indownvol } },
+	{ 0,                            XF86XK_AudioMicMute, spawn,   {.v = inmutevol } },
 	{ 0,                            XF86XK_AudioPlay, spawn,   {.v = playerplaypause } },
 	{ 0,                            XF86XK_AudioStop, spawn,   {.v = playerstop } },
 	{ 0,                            XF86XK_AudioNext, spawn,   {.v = playernext } },
