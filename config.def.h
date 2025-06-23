@@ -154,6 +154,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "j4-dmenu-desktop", "--dmenu=dmenu -i -p ' Apps:'", "--no-generic", "--use-xdg-de", NULL };
 static const char *roficmd[] = { "rofi-apps", NULL };
 static const char *rofimagercmd[] = { "rofi-mager", NULL };
+static const char *rofiemojicmd[] = { "rofi-emoji-run", NULL };
 static const char *rofipowercmd[] = { "rofi-power", NULL};
 static const char *termcmd[]  = { "st", NULL };
 static const char *termfloatcmd[]  = { "st", "-t", "st^", NULL };
@@ -184,6 +185,7 @@ static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = roficmd } },
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = rofimagercmd } },
+	{ MODKEY,                       XK_e,      spawn,          {.v = rofiemojicmd } },
 	{ MODKEY|ShiftMask,             XK_End,    spawn,          {.v = rofipowercmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ControlMask,           XK_Return, spawn,          {.v = termfloatcmd } },
