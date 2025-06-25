@@ -156,6 +156,10 @@ typedef struct {
 	const char scratchkey;
 } Rule;
 
+typedef struct {
+	int x, y, w, h;
+} DwmLogo;
+
 /* function declarations */
 static void applyrules(Client *c);
 static int applysizehints(Client *c, int *x, int *y, int *w, int *h, int interact);
@@ -278,6 +282,7 @@ static int bh;               /* bar height */
 static int lrpad;            /* sum of left and right padding for text */
 static int vp;               /* vertical padding for bar */
 static int sp;               /* side padding for bar */
+static int dwmlogowdth = 54; /* dwm logo width */
 static int (*xerrorxlib)(Display *, XErrorEvent *);
 static unsigned int numlockmask = 0;
 static void (*handler[LASTEvent]) (XEvent *) = {
@@ -580,7 +585,7 @@ buttonpress(XEvent *e)
 	}
 	if (ev->window == selmon->barwin) {
 		i = x = 0;
-		x = 50; /* customtext range */
+		x = dwmlogowdth; /* dwm logo width */
 		do
 			x += TEXTW(tags[i]);
 		while (ev->x >= x && ++i < LENGTH(tags));
@@ -1120,11 +1125,11 @@ dragmfact(const Arg *arg)
 void
 drawbar(Monitor *m)
 {
-	int x, y, w, tw = 0;
+	int x, w, tw = 0;
+	int stroke = 4, letterHeight = bh - 4;
 	int boxs = drw->fonts->h / 9;
 	int boxw = drw->fonts->h / 6 + 2;
 	unsigned int i, occ = 0, urg = 0;
-	const char *customtext = "    ";
 	Client *c;
 
 	if (!m->showbar)
@@ -1143,15 +1148,31 @@ drawbar(Monitor *m)
 			urg |= c->tags;
 	}
 
-	/* Draw custom text at the beginning */
-	x = -8; /* x position of customtext */
-	y = 8; /* y position of customtext */
+	/* use colored scheme for visibility */
 	drw_setscheme(drw, scheme[SchemeNorm]);
-	w = TEXTW(customtext);
-	drw_text(drw, x, 0, w, bh + y, lrpad / 2, customtext, 0);
-	x += w;
+	
+	/* draw dark background for logo */
+	drw_rect(drw, 0, 0, dwmlogowdth, bh, 1, 1);
+	
+	/* draw dwm logo */
+	const DwmLogo dwmLogo[] = {
+		{  0, 10, stroke, letterHeight / 2 }, /* d: left vertical */
+		{  0, 18,     35, stroke            }, /* d: bottom horizontal */
+		{ 13,  1, stroke, letterHeight     }, /* d: right vertical */
+		{  0,  9,     15, stroke            }, /* d: top horizontal */
+		{ 22, 10, stroke, letterHeight / 2 }, /* w: center vertical */
+		{ 31, 10, stroke, letterHeight / 2 }, /* w: right vertical */
+		{ 31,  9,     22, stroke            }, /* m: top horizontal */
+		{ 40, 13, stroke, letterHeight / 2 }, /* m: center vertical */
+		{ 49, 13, stroke, letterHeight / 2 }  /* m: right vertical */
+	};
 
-	/* Draw tags starting after custom text */
+	for (int i = 0; i < LENGTH(dwmLogo); i++) {
+		drw_rect(drw, dwmLogo[i].x, dwmLogo[i].y, dwmLogo[i].w, dwmLogo[i].h, 1, 0);
+	}
+
+	/* start drawing tags after logo */
+	x = dwmlogowdth;
 	for (i = 0; i < LENGTH(tags); i++) {
 		w = TEXTW(tags[i]);
 		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeTagSel : SchemeNorm]);
