@@ -196,7 +196,6 @@ static void focus(Client *c);
 static void focusin(XEvent *e);
 static void focusmon(const Arg *arg);
 static void focusstackvis(const Arg *arg);
-static void focusstackhid(const Arg *arg);
 static void focusstack(int inc, int vis);
 static Atom getatomprop(Client *c, Atom prop);
 static int getrootptr(int *x, int *y);
@@ -1338,11 +1337,6 @@ focusstackvis(const Arg *arg) {
 }
 
 void
-focusstackhid(const Arg *arg) {
-	focusstack(arg->i, 1);
-}
-
-void
 focusstack(int inc, int hid)
 {
 	Client *c = NULL, *i;
@@ -1863,9 +1857,9 @@ movestack(const Arg *arg)
 
 	if(arg->i > 0) {
 		/* find the client after selmon->sel */
-		for(c = selmon->sel->next; c && (!ISVISIBLE(c) || c->isfloating); c = c->next);
+		for(c = selmon->sel->next; c && (!ISVISIBLE(c) || HIDDEN(c) || c->isfloating); c = c->next);
 		if(!c)
-			for(c = selmon->clients; c && (!ISVISIBLE(c) || c->isfloating); c = c->next);
+			for(c = selmon->clients; c && (!ISVISIBLE(c) || HIDDEN(c) || c->isfloating); c = c->next);
 
 	}
 	else {
