@@ -31,7 +31,7 @@ static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray4, col_gray1, col_gray1 },
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
-	[SchemeHid]  = { col_cyan,  col_black, col_gray1  },
+	[SchemeHid]  = { col_gray2,  col_black, col_gray1  },
 	[SchemeTagSel]  = { col_white, col_cyan,  col_cyan },
 	[SchemeBorderNorm] = { col_gray4, col_gray2, col_gray2 },
 	[SchemeScratchSel]  = { col_gray4, col_cyan,  col_cyan  },
