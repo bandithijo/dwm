@@ -2072,15 +2072,10 @@ removescratch(const Arg *arg)
 void
 resetcanfocusfloating()
 {
-	unsigned int i, n;
 	Client *c;
 
-	for (n = 0, c = selmon->clients; c; c = c->next, n++);
-	if (n == 0)
-		return;
-
-	for (i = 0, c = selmon->clients; c; c = c->next, i++)
-		if (c->isfloating)
+	for (c = selmon->clients; c; c = c->next)
+		if ((c->tags & selmon->tagset[selmon->seltags]) && c->isfloating)
 			c->cantfocus = 0;
 
 	arrange(selmon);
@@ -2683,31 +2678,21 @@ togglebar(const Arg *arg)
 void
 togglecanfocusfloating(const Arg *arg)
 {
-	unsigned int n;
-	Client *c, *cf = NULL;
+	Client *c = selmon->sel;
 
-	if (!selmon->sel)
+	if (!c || !c->isfloating)
 		return;
 
-	for (c = selmon->clients; c; c = c->next)
-		if (c->cantfocus == 1) {
-			cf = c;
-		}
+	c->cantfocus = !c->cantfocus;
 
-	if (cf) {
-		resetcanfocusfloating();
-		focus(cf);
+	if (c->cantfocus) {
+		Client *next = nexttiled(selmon->clients);
+		if (next && next != c)
+			focus(next);
+		else
+			focus(NULL);
 	} else {
-		for (n = 0, c = selmon->clients; c; c = c->next)
-			if (c->isfloating)
-				c->cantfocus = !c->cantfocus;
-			else
-				n++;
-
-		if (n && selmon->sel->isfloating) {
-			c = nexttiled(selmon->clients);
-			focus(c);
-		}
+		focus(c);
 	}
 
 	arrange(selmon);
