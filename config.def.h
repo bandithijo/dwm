@@ -30,8 +30,9 @@ static const char col_orange[]      = "#FF8800";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray4, col_gray1, col_gray1 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
-	[SchemeHid]  = { col_gray2,  col_black, col_gray1  },
+	[SchemeNorn] = { col_gray1, col_cyan, col_cyan },
+	[SchemeSel]  = { col_gray4, col_cyan, col_cyan },
+	[SchemeHid]  = { col_gray2, col_black, col_gray1 },
 	[SchemeTagSel]  = { col_white, col_cyan,  col_cyan },
 	[SchemeBorderNorm] = { col_gray4, col_gray2, col_gray2 },
 	[SchemeScratchSel]  = { col_gray4, col_cyan,  col_cyan  },
@@ -42,6 +43,7 @@ static const unsigned int borderalpha = OPAQUE;
 static const unsigned int alphas[][3] = {
 	/*               fg         bg         border*/
 	[SchemeNorm] = { OPAQUE,    OPAQUE,  borderalpha },
+	[SchemeNorn] = { OPAQUE,    OPAQUE,  OPAQUE },
 	[SchemeSel]  = { OPAQUE,    OPAQUE,  borderalpha },
 	[SchemeTagSel]  = { OPAQUE, OPAQUE,  OPAQUE },
 };
