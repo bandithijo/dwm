@@ -25,6 +25,7 @@ static const char col_gray4[]       = "#EEEEEE"; // EEEEEE // 93A1A1
 static const char col_white[]       = "#FFFFFF"; // FFFFFF
 static const char col_black[]       = "#000000";
 static const char col_cyan[]        = "#005F87"; // 005F87 // 2AA198
+static const char col_blue[]        = "#004460"; // dark blue
 static const char col_red[]         = "#FF0000";
 static const char col_orange[]      = "#FF8800";
 static const char *colors[][3]      = {
@@ -32,7 +33,7 @@ static const char *colors[][3]      = {
 	[SchemeNorm] = { col_gray4, col_gray1, col_gray1 },
 	[SchemeNorn] = { col_gray1, col_cyan, col_cyan },
 	[SchemeSel]  = { col_gray4, col_cyan, col_cyan },
-	[SchemeHid]  = { col_gray2, col_black, col_gray1 },
+	[SchemeHid]  = { col_blue, col_cyan, col_cyan },
 	[SchemeTagSel]  = { col_white, col_cyan,  col_cyan },
 	[SchemeBorderNorm] = { col_gray4, col_gray2, col_gray2 },
 	[SchemeScratchSel]  = { col_gray4, col_cyan,  col_cyan  },
@@ -45,6 +46,7 @@ static const unsigned int alphas[][3] = {
 	[SchemeNorm] = { OPAQUE,    OPAQUE,  borderalpha },
 	[SchemeNorn] = { OPAQUE,    OPAQUE,  OPAQUE },
 	[SchemeSel]  = { OPAQUE,    OPAQUE,  borderalpha },
+	[SchemeHid]  = { OPAQUE,	OPAQUE,	 OPAQUE },
 	[SchemeTagSel]  = { OPAQUE, OPAQUE,  OPAQUE },
 };
 
