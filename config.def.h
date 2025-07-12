@@ -190,7 +190,7 @@ static const char *scrotfull[] = { "scrot-full", NULL };
 static const char *flameshotgui[] = { "flameshot", "gui", NULL };
 
 /*First arg only serves to match against key in rules*/
-static const char *scratchpadcmd[] = { "s", "st", "-t", "scratchpad", NULL };
+static const char *scratchpadcmd[] = { "s", "sh", "-c", "tabbed -r 2 -c st -w '' -t scratchpad", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
