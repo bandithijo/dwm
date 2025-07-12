@@ -1185,12 +1185,12 @@ drawbar(Monitor *m)
 	/* draw dwm logo */
 	const DwmLogo dwmLogo[] = {
 		{  0, 10, stroke, letterHeight / 2 }, /* d: left vertical */
-		{  0, 18,     35, stroke            }, /* d: bottom horizontal */
+		{  0, 18,     35, stroke           }, /* d: bottom horizontal */
 		{ 13,  1, stroke, letterHeight     }, /* d: right vertical */
-		{  0,  9,     15, stroke            }, /* d: top horizontal */
+		{  0,  9,     15, stroke           }, /* d: top horizontal */
 		{ 22, 10, stroke, letterHeight / 2 }, /* w: center vertical */
 		{ 31, 10, stroke, letterHeight / 2 }, /* w: right vertical */
-		{ 31,  9,     22, stroke            }, /* m: top horizontal */
+		{ 31,  9,     22, stroke           }, /* m: top horizontal */
 		{ 40, 13, stroke, letterHeight / 2 }, /* m: center vertical */
 		{ 49, 13, stroke, letterHeight / 2 }  /* m: right vertical */
 	};
