@@ -4,9 +4,9 @@
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int gappx     = 0;        /* gaps between windows */
-static const int vertpad            = 0;        /* vertical padding of bar */
-static const int sidepad            = 0;        /* horizontal padding of bar */
+static const unsigned int gappx     = 10;       /* gaps between windows */
+static const int vertpad            = 10;        /* vertical padding of bar */
+static const int sidepad            = 10;        /* horizontal padding of bar */
 static const unsigned int snap      = 5;        /* snap pixel */
 static const int user_bh            = 5;        /* 2 is the default spacing around the bar's font */
 static const int showbar            = 1;        /* 0 means no bar */
@@ -30,10 +30,10 @@ static const char col_red[]         = "#FF0000";
 static const char col_orange[]      = "#FF8800";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray4, col_gray1, col_gray1 },
-	[SchemeNorn] = { col_gray1, col_cyan, col_cyan },
-	[SchemeSel]  = { col_gray4, col_cyan, col_cyan },
-	[SchemeHid]  = { col_blue, col_cyan, col_cyan },
+	[SchemeNorm] = { col_black, col_black, col_black },
+	[SchemeNorn] = { col_black, col_black, col_black },
+	[SchemeSel]  = { col_black, col_cyan, col_cyan },
+	[SchemeHid]  = { col_gray3, col_black, col_black },
 	[SchemeTagSel]  = { col_white, col_cyan,  col_cyan },
 	[SchemeBorderNorm] = { col_gray4, col_gray2, col_gray2 },
 	[SchemeScratchSel]  = { col_gray4, col_cyan,  col_cyan  },
@@ -43,11 +43,11 @@ static const unsigned int baralpha  = 0x00;
 static const unsigned int borderalpha = OPAQUE;
 static const unsigned int alphas[][3] = {
 	/*               fg         bg         border*/
-	[SchemeNorm] = { OPAQUE,    OPAQUE,  borderalpha },
-	[SchemeNorn] = { OPAQUE,    OPAQUE,  OPAQUE },
-	[SchemeSel]  = { OPAQUE,    OPAQUE,  borderalpha },
-	[SchemeHid]  = { OPAQUE,	OPAQUE,	 OPAQUE },
-	[SchemeTagSel]  = { OPAQUE, OPAQUE,  OPAQUE },
+	[SchemeNorm] = { OPAQUE,    baralpha,  OPAQUE },
+	[SchemeNorn] = { OPAQUE,    baralpha,  OPAQUE },
+	[SchemeSel]  = { OPAQUE,    baralpha,  OPAQUE },
+	[SchemeHid]  = { OPAQUE,	baralpha,  OPAQUE },
+	[SchemeTagSel]  = { OPAQUE, OPAQUE,    OPAQUE },
 };
 
 /* autostart */
@@ -55,8 +55,9 @@ static const char *const autostart[] = {
 	"dwmstatus", NULL,
 	"dunst", "-config", "~/.config/dunst/dunstrc", NULL,
 	"sh", "-c", "killall conky; sleep 2 && conky -c ~/.config/conky/conkyrc", NULL,
-	/* "picom", "-config", "~/.config/picom/picom.conf", "-b", NULL, */
-	"xcompmgr", NULL,
+	"sh", "-c", "killall picom; sleep 2 && picom --config ~/.config/picom/picom.conf -b", NULL,
+	// "picom", "--config", "~/.config/picom/picom.conf", "-b", NULL,
+	/* "xcompmgr", NULL, */
 	NULL /* terminate */
 };
 

@@ -1216,33 +1216,36 @@ drawbar(Monitor *m)
 	drw_setscheme(drw, scheme[SchemeNorm]);
 	x = drw_text(drw, x, 0, w, bh + 2, lrpad / 2, m->ltsymbol, 0);
 
-	if ((w = m->ww - tw - x) > bh) {
-		drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
+	int available_width = m->ww - tw - x - (2 * sp);
+	if (available_width > bh) {
+		w = available_width;
+
+		drw_setscheme(drw, scheme[SchemeNorm]);
 		if (n > 0) {
+			int tabw = w / n;
 			int remainder = w % n;
-			int tabw = (1.0 / (double)n) * w + 1;
+
 			for (c = m->clients; c; c = c->next) {
 				if (!ISVISIBLE(c))
 					continue;
 				if (m->sel == c)
-					scm = SchemeSel;
+					scm = SchemeNorm;
 				else if (HIDDEN(c))
 					scm = SchemeHid;
 				else
 					scm = SchemeNorn;
 				drw_setscheme(drw, scheme[scm]);
 
-				if (remainder >= 0) {
-					if (remainder == 0) {
-						tabw--;
-					}
+				int actual_tabw = tabw;
+				if (remainder > 0) {
+					actual_tabw++;
 					remainder--;
 				}
-				drw_text(drw, x, 0, tabw, bh, lrpad / 2, c->name, 0);
-				x += tabw;
+				drw_text(drw, x, 0, actual_tabw, bh, lrpad / 2, c->name, 0);
+				x += actual_tabw;
 			}
 		} else {
-			drw_rect(drw, x, 0, w - 2 * sp, bh, 1, 1);
+			drw_rect(drw, x, 0, w, bh, 1, 1);
 		}
 	}
 	m->bt = n;
